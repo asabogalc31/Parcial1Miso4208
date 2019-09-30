@@ -5,9 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import step_definition.Hooks;
-
-public class SignUp extends Hooks {
+public class SignUp extends PageObjectBase {
 	/*
 	 * Static variables
 	 */
