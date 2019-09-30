@@ -13,18 +13,26 @@ public class Hooks implements En {
 	
 	public Hooks() {
 		Before(0,(Scenario scenario)->{
-			if (WebDriverManager.chromedriver()==null) {
-				WebDriverManager.chromedriver().forceDownload();
+			try {
+				if (WebDriverManager.chromedriver()==null) {
+					WebDriverManager.chromedriver().forceDownload();
+				}
+				WebDriverManager.chromedriver().setup();
+			} catch (Exception | AssertionError e) {
+				System.out.println("An error ocurred in the Before() function");
 			}
-			WebDriverManager.chromedriver().setup();
 		});
 		
-		BeforeStep(()-> {			
-			System.setProperty("webdriver.path", System.getProperty("webdriver.chrome.driver"));
-			ChromeOptions chromeOptions = new ChromeOptions();
-			driver = new ChromeDriver(chromeOptions);	
-			driver.manage().window().maximize();
-			driver.get("https://todoist.com");
+		BeforeStep(()-> {	
+			try {
+				System.setProperty("webdriver.path", System.getProperty("webdriver.chrome.driver"));
+				ChromeOptions chromeOptions = new ChromeOptions();
+				driver = new ChromeDriver(chromeOptions);	
+				driver.manage().window().maximize();
+				driver.get("https://todoist.com");
+			} catch (Exception | AssertionError e) {
+				System.out.println("An error ocurred in the BeforeStep() function");
+			}
 		});
 	}
 }

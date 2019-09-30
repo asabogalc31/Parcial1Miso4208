@@ -8,6 +8,7 @@ public class SignUpSteps implements En {
 	
 	public SignUpSteps(){
 		Given("^I want to register me with my name \"([^\"]*)\", email \"([^\"]*)\" and password \"([^\"]*)\"$", (String name, String email, String password) -> {
+			signUp = new SignUp();
 			signUp.createAccount(name, email, password);
 		});
 	}
